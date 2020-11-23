@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/MyCodeTestThree.iml" filepath="$PROJECT_DIR$/.idea/MyCodeTestThree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RedisTemplateTest/RedisTemplateTest.iml" filepath="$PROJECT_DIR$/RedisTemplateTest/RedisTemplateTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RedissionTest/RedissionTest.iml" filepath="$PROJECT_DIR$/RedissionTest/RedissionTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringException/SpringException.iml" filepath="$PROJECT_DIR$/SpringException/SpringException.iml" />
     </modules>
   </component>

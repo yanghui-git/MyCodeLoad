@@ -5,7 +5,14 @@
       <list>
         <option value="$PROJECT_DIR$/Springexccetion/pom.xml" />
         <option value="$PROJECT_DIR$/SpringException/pom.xml" />
+        <option value="$PROJECT_DIR$/RedissionTest/pom.xml" />
+        <option value="$PROJECT_DIR$/RedisTemplateTest/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/SpringException/RedisTemplateTest/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
