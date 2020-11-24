@@ -114,4 +114,9 @@ public class RedissonTest {
         }
 
     }
+
+    @Test
+    public void six(){
+        System.out.println("22".concat("yh"));
+    }
 }

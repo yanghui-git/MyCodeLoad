@@ -7,13 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="RedissionTest" />
+        <module name="Redis" />
         <module name="RedisTemplateTest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="RedissionTest" target="1.5" />
-      <module name="RedisTemplateTest" target="1.5" />
-      <module name="SpringException" target="1.5" />
       <module name="SpringExceptionHandler" target="1.5" />
     </bytecodeTargetLevel>
   </component>
