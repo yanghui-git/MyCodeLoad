@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="RedissionTest" />
         <module name="Redis" />
         <module name="RedisTemplateTest" />
+        <module name="SpringEasy" />
+        <module name="RedissionTest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
