@@ -15,6 +15,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -69,7 +73,7 @@ public class CommonRedisUtil {
         bucket.set("3333");
         bucket = transaction.getBucket("5555");
         bucket.set("5555");
-         int a = 1 / 0;
+        int a = 1 / 0;
         transaction.commit();
         //out(bucket.get());
     }
@@ -81,11 +85,47 @@ public class CommonRedisUtil {
                 redisOperations.multi();
                 redisTemplate.opsForValue().set("1111", "1111");
                 redisTemplate.opsForValue().set("2222", "2222");
-                    int a = 1 / 0;
+                int a = 1 / 0;
                 return redisOperations.exec();
             }
         });
     }
 
+
+    /**
+     * 分布式锁demo  https://blog.csdn.net/hgdzw/article/details/97241208?utm_medium=distribute.pc_relevant.none-task-blog-title-10&spm=1001.2101.3001.4242
+     */
+    @Test
+    public void Lock() throws Exception {
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        Set<Callable<String>> futureSet = new HashSet<Callable<String>>();
+        for (int i = 0; i < 6; i++) {
+            futureSet.add(new Callable<String>() {
+                public String call() throws Exception {
+                    //创建锁对象，并制定锁名称
+                    RLock rLock = redissonClient.getLock("lock-test");
+                    // 获取锁并设置失效时间 20*1000ms
+                    boolean isGetLock = rLock.tryLock(0, 20000, TimeUnit.MILLISECONDS);
+                    //判断是否获取到锁
+                    if (!isGetLock) {
+                        out("获取锁失败 💔💔");
+                        return null;
+                    }
+                    //todo 执行各种业务
+                    try {
+                        out("👴👴获取锁成功了😄😄");
+                    } catch (Exception e) {
+                        out(e.getMessage());
+                    } finally {
+                        out("释放锁了 👋👋");
+                        rLock.unlock();
+                    }
+                    return null;
+                }
+            });
+        }
+        //并发模拟
+        executorService.invokeAll(futureSet);
+    }
 
 }
