@@ -9,7 +9,9 @@
         <module name="Redis" />
         <module name="RedisTemplateTest" />
         <module name="SpringEasy" />
+        <module name="Minio8.0" />
         <module name="RedissionTest" />
+        <module name="Minio" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

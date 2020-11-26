@@ -3,7 +3,6 @@ package com.yh.toredisson.test;
 import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.redisson.api.RBucket;
 import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
@@ -53,7 +50,7 @@ public class HashTypeRedis {
         rmap.putAll(map);
         out(rmap.containsKey("name"));
         out(rmap.get("name"));
-       // rmap.remove("name");
+        // rmap.remove("name");
         map = rmap;
         out(JSON.toJSONString(map));
     }
@@ -62,18 +59,51 @@ public class HashTypeRedis {
     @Test
     public void HashTypeRedis2() {
         Map map = new HashMap();
-        map.put("1",new Student("hash1",20));
+        map.put("1", new Student("hash1", 20));
         map.put("2", new Student("hash2", 22));
-
-        RMap rmap = redissonClient.getMap("HashMapStudent");
+        map.put("3", 33);
+       /* RMap rmap = redissonClient.getMap("HashMapStudent");
         rmap.putAll(map);
-        out(rmap.containsKey("3"));
-        out(rmap.get("2"));
+        rmap.put("hash3",33);
+        out(rmap.containsKey("hash3"));
+        out(rmap.get("hash3"));
         // rmap.remove("name");
         rmap.remove("1");
-        map = rmap.readAllMap();
+        map=rmap.readAllMap();
         out(map);
+*/
+        redisTemplate.opsForHash().putAll("jj", map);
+        map = redisTemplate.opsForHash().entries("jj");
+        out(map);
+
     }
 
+
+    @Test
+    public void deleteKey() {
+        Map map = new HashMap();
+        map.put("name", "name1");
+        map.put("age", 20);
+        map.put("haha", "haha");
+        redisTemplate.delete("mapdel");
+        redisTemplate.opsForHash().putAll("mapdel", map);
+       out( redisTemplate.opsForHash().delete("mapdel", new String[]{
+                "name", "age", "xixi"
+        }));
+        out(redisTemplate.opsForHash().get("mapdel", "name"));
+        out(redisTemplate.opsForHash().get("mapdel", "age"));
+        out(redisTemplate.opsForHash().get("mapdel", "haha"));
+
+
+        redissonClient.getMap("mapredis").putAll(map);
+        String a = redissonClient.getMap("mapredis").remove("name").toString();
+        out(a);
+        String b=redissonClient.getMap("mapredis").remove("haha").toString();
+        out(b);
+        out(redissonClient.getMap("mapredis").get("name"));
+        out(redissonClient.getMap("mapredis").get("age"));
+        out(redissonClient.getMap("mapredis").get("haha"));
+
+    }
 
 }

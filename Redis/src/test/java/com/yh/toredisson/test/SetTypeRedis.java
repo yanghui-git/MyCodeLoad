@@ -47,11 +47,46 @@ public class SetTypeRedis {
         setList = redisTemplate.opsForSet().members("SetRedis");
         out(setList);
 
-        RSet rset = redissonClient.getSet("SetRedis-Redisson");
+        RSet rset = redissonClient.getSet("trans-2-red");
         rset.delete();
         rset.addAll(setList);
         setList = rset.readAll();
         out(setList);
     }
+
+    @Test
+    public void SetTypeRedis2() {
+        Set<String> test2=new HashSet<String>();
+        test2.add("11");
+        test2.add("22");
+
+     /*   redisTemplate.delete("haha");
+        redisTemplate.opsForSet().add("haha", test2.toArray());
+        out(redisTemplate.opsForSet().members("haha"));*/
+
+        redissonClient.getKeys().delete("xixi");
+        redissonClient.getSet("xixi").addAll(test2);
+        out(redissonClient.getSet("xixi").readAll());
+
+    /*    redisTemplate.delete("set111");
+        redisTemplate.opsForSet().add("set111","11");
+        redisTemplate.opsForSet().add("set111","22");
+        redisTemplate.opsForSet().add("set111","33");
+        redisTemplate.opsForSet().add("set111","44");
+        out(redisTemplate.opsForSet().members("set111"));
+        redisTemplate.opsForSet().remove("set111",test2.toArray());
+        out(redisTemplate.opsForSet().members("set111"));*/
+
+      /*  redissonClient.getSet("set222").add("11");
+        redissonClient.getSet("set222").add("22");
+        redissonClient.getSet("set222").add("33");
+        redissonClient.getSet("set222").add("44");
+        out( redissonClient.getSet("set222").readAll());
+        redissonClient.getSet("set222").removeAll(test2);
+        out( redissonClient.getSet("set222").readAll());*/
+
+
+    }
+
 
 }

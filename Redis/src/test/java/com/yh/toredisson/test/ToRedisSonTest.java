@@ -2,13 +2,12 @@ package com.yh.toredisson.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.redisson.api.*;
+import org.redisson.api.RBitSet;
+import org.redisson.api.RBucket;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -50,16 +49,37 @@ public class ToRedisSonTest {
     @Test
     public void six() {
         //如果键不存在则新增,存在则不改变已经有的值
-        redisTemplate.opsForValue().setIfAbsent("absent-1", "haha--fix");
-        out(redisTemplate.opsForValue().get("absent-1"));
+        // redisTemplate.opsForValue().setIfAbsent("absent-1", "haha--fix");
+        // out(redisTemplate.opsForValue().get("absent-1"));
 
         RBucket rBucket = redissonClient.getBucket("absent-1-red");
-        // rBucket.setIfExists("hahaha");
+        rBucket.setIfExists("hahaha");
         rBucket.trySet("hhhaaaakkk");
         out(rBucket.get());
         //  存在则更新
         //   redisTemplate.opsForValue().setIfPresent();
         //  rBucket.setIfExists();
+    }
+
+    @Test
+    public void server7() {
+        RBucket rBucket = redissonClient.getBucket("set666");
+        rBucket.delete();
+        //rBucket.set("888");
+        out(rBucket.get());
+        //存在则更新
+        rBucket.setIfExists("777");
+        out(rBucket.get());
+    }
+
+    @Test
+    public void server8() {
+        RBucket rBucket = redissonClient.getBucket("set777");
+        rBucket.set("777");
+        out(rBucket.get());
+        rBucket.delete();
+        rBucket.trySet("888");
+        out(rBucket.get());
     }
 
     /**

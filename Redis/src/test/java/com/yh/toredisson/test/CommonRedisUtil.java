@@ -45,22 +45,33 @@ public class CommonRedisUtil {
     @Test
     public void SearchKey() {
         Set<String> keys = new HashSet<String>();
-        keys = stringRedisTemplate.keys("*");
+  /*      keys = stringRedisTemplate.keys("*");
         out(keys);
         keys = stringRedisTemplate.keys("*String*");
-        out(keys);
+        out(keys);*/
 
         RKeys rKeys = redissonClient.getKeys();
         Iterator iterator = rKeys.getKeysByPattern("*").iterator();
+        //   while (iterator.hasNext()) {
+        // out(iterator.next());
+        //   }
+        iterator = rKeys.getKeysByPattern("trans*").iterator();
         while (iterator.hasNext()) {
             out(iterator.next());
         }
-        iterator = rKeys.getKeysByPattern("*String*").iterator();
-        while (iterator.hasNext()) {
-            out(iterator.next());
-        }
+    }
+
+    /**
+     * 过期时间
+     */
+    @Test
+    public void expire() {
 
     }
+
+
+
+
 
 
     /**
@@ -136,13 +147,38 @@ public class CommonRedisUtil {
         //判断是否获取到锁
         if (!isGetLock) {
             out("获取锁失败 💔💔");
-            return ;
+            return;
         }
         out("分布式锁获取成功");
         out("准备释放分布式锁");
         rLock.unlock();
         //重复释放锁会报错
-     //   rLock.unlock();
+        //   rLock.unlock();
 
+    }
+
+    /**
+     * 删除key
+     */
+    @Test
+    public void deleteKey() {
+        redisTemplate.opsForValue().set("4444test", "4444test");
+        redisTemplate.opsForValue().set("5555test", "5555test");
+        out(redisTemplate.opsForValue().get("4444test"));
+        out(redisTemplate.opsForValue().get("5555test"));
+        // redisTemplate.delete("4444test");
+        redisTemplate.delete("5555test");
+        out(redisTemplate.opsForValue().get("4444test"));
+        out(redisTemplate.opsForValue().get("5555test"));
+        out("66666");
+        //
+        redissonClient.getBucket("11test").set("11test");
+        redissonClient.getBucket("22test").set("22test");
+        out(redissonClient.getBucket("11test").get());
+        out(redissonClient.getBucket("22test").get());
+        redissonClient.getKeys().delete("11test");
+        //   redissonClient.getKeys().delete("22test");
+        out(redissonClient.getBucket("11test").get());
+        out(redissonClient.getBucket("22test").get());
     }
 }

@@ -10,6 +10,8 @@
         <option value="$PROJECT_DIR$/RedisTemplateTest/pom.xml" />
         <option value="$PROJECT_DIR$/Redis/pom.xml" />
         <option value="$PROJECT_DIR$/SpringEasy/pom.xml" />
+        <option value="$PROJECT_DIR$/Minio/pom.xml" />
+        <option value="$PROJECT_DIR$/Minio8.0/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
