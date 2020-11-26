@@ -53,8 +53,26 @@ public class HashTypeRedis {
         rmap.putAll(map);
         out(rmap.containsKey("name"));
         out(rmap.get("name"));
+       // rmap.remove("name");
         map = rmap;
         out(JSON.toJSONString(map));
+    }
+
+
+    @Test
+    public void HashTypeRedis2() {
+        Map map = new HashMap();
+        map.put("1",new Student("hash1",20));
+        map.put("2", new Student("hash2", 22));
+
+        RMap rmap = redissonClient.getMap("HashMapStudent");
+        rmap.putAll(map);
+        out(rmap.containsKey("3"));
+        out(rmap.get("2"));
+        // rmap.remove("name");
+        rmap.remove("1");
+        map = rmap.readAllMap();
+        out(map);
     }
 
 

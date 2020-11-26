@@ -55,4 +55,12 @@ public class StringTypeRedis {
         out(test);
     }
 
+
+    @Test
+    public void StringTypeRedis2() {
+        RBucket rBucket=redissonClient.getBucket("StringRedissonHa");
+        rBucket.set(new Student("😁😁",20));
+        System.out.println(rBucket.get());
+    }
+
 }
