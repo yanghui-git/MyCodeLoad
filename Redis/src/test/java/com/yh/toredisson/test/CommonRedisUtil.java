@@ -128,4 +128,21 @@ public class CommonRedisUtil {
         executorService.invokeAll(futureSet);
     }
 
+    @Test
+    public void Lock2() throws Exception {
+        RLock rLock = redissonClient.getLock("lock-test");
+        // 获取锁并设置失效时间 20*1000ms
+        boolean isGetLock = rLock.tryLock(0, 20000, TimeUnit.MILLISECONDS);
+        //判断是否获取到锁
+        if (!isGetLock) {
+            out("获取锁失败 💔💔");
+            return ;
+        }
+        out("分布式锁获取成功");
+        out("准备释放分布式锁");
+        rLock.unlock();
+        //重复释放锁会报错
+     //   rLock.unlock();
+
+    }
 }
