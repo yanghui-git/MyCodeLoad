@@ -70,10 +70,6 @@ public class CommonRedisUtil {
     }
 
 
-
-
-
-
     /**
      * 事物处理 redisTemplate.execute--> redissonClient.createTransaction()
      */
@@ -84,9 +80,13 @@ public class CommonRedisUtil {
         bucket.set("3333");
         bucket = transaction.getBucket("5555");
         bucket.set("5555");
-        int a = 1 / 0;
+        //int a = 1 / 0;
         transaction.commit();
-        //out(bucket.get());
+
+        out(redissonClient.getBucket("3333").get());
+        out(redissonClient.getBucket("5555").get());
+        out(bucket.get());
+        // out(transaction.getBucket("3333"));
     }
 
     @Test
@@ -102,6 +102,30 @@ public class CommonRedisUtil {
         });
     }
 
+    @Test
+    public void batch() {
+        RBatch batch = redissonClient.createBatch(BatchOptions.defaults());
+        batch.getBucket("batch3").setAsync("batch3");
+        batch.getBucket("batch2").setAsync("batch2");
+        RBucket rBucket = (RBucket) batch.getBucket("batch4");
+        rBucket.set("4444");
+        // int a=1/0;
+        batch.execute();
+
+        out(batch.getBucket("batch3").getAsync());
+        out(redissonClient.getBucket("batch2").get());
+        out(batch.getBucket("batch3"));
+        out(rBucket.get());
+       /* RTransaction transaction = redissonClient.createTransaction(TransactionOptions.defaults());
+        RBucket<String> bucket = transaction.getBucket("3333");
+        bucket.set("3333");
+        bucket = transaction.getBucket("5555");
+        bucket.set("5555");
+
+        int a = 1 / 0;
+        transaction.commit();
+        out(bucket.get());*/
+    }
 
     /**
      * 分布式锁demo  https://blog.csdn.net/hgdzw/article/details/97241208?utm_medium=distribute.pc_relevant.none-task-blog-title-10&spm=1001.2101.3001.4242

@@ -62,5 +62,4 @@ public class StringTypeRedis {
         rBucket.set(new Student("😁😁",20));
         System.out.println(rBucket.get());
     }
-
 }
