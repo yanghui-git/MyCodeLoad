@@ -5,12 +5,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.yang.test</groupId>
-    <artifactId>Mycodeload2.0</artifactId>
+    <artifactId>MyCodeload2.0</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>MybaticsPlus</module>
         <module>FlyWay</module>
+        <module>Minio</module>
+        <module>Minio8.0</module>
+        <module>MybaticsPlus</module>
+        <module>Redis</module>
+        <module>RedissionTest</module>
+        <module>RedisTemplateTest</module>
+        <module>RestTemplate</module>
+        <module>SpringEasy</module>
+        <module>SpringException</module>
     </modules>
 
 

@@ -9,6 +9,7 @@
         <module name="FlyWay" />
         <module name="RedissionTest" />
         <module name="Minio" />
+        <module name="RestTemplate" />
         <module name="Redis" />
         <module name="MybaticsPlus" />
         <module name="RedisTemplateTest" />
