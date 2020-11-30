@@ -72,7 +72,7 @@ public class JacksonTestYh {
         //       System.out.println(studentRs3);
     }
 
-    @Test
+   /* @Test
     public void test2() throws Exception {
         //json与数组
         Student[] students = new Student[]{new Student("yh1", 1, new ArrayList<>()), new Student("yh2", 2, new ArrayList<>())};
@@ -93,6 +93,6 @@ public class JacksonTestYh {
         System.out.println(JSON.toJSONString(studentObj));
 
     }
-
+*/
 
 }

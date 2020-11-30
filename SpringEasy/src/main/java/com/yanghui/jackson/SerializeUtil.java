@@ -92,7 +92,7 @@ public class SerializeUtil {
 
     public static <T> List<T> transJsonToList(String json, Class<T> cls, String type) {
         List<Object> result = new ArrayList<>();
-        try {
+ /*       try {
             result = getObjectMapper().readValue(json, new TypeReference<List<T>>() {
                 public Type getType() {
                     ParameterizedType type = new ParameterizedType() {
@@ -119,7 +119,7 @@ public class SerializeUtil {
             if (type.equals("two")) {
                 logger.error(String.format("反序列化LIST失败，数据 %s，目标对象 %s,失败原因 %s", json, cls, e.getMessage()));
             }
-        }
+        }*/
         return (List<T>) result;
     }
 
