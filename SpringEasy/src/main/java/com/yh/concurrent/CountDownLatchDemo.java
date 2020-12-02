@@ -51,7 +51,7 @@ public class CountDownLatchDemo {
     public static void CountDownLatch() throws Exception {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         int k = 30;
-        CountDownLatch countDownLatch = new CountDownLatch(k);
+        final CountDownLatch countDownLatch = new CountDownLatch(k);
         for (int i = 0; i < k; i++) {
             executorService.submit(new Runnable() {
                 @Override

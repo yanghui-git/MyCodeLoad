@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.concurrent.CyclicBarrier;
 
 /**
+ * 栅栏
  * CyclicBarrier 使用详解
  * https://www.jianshu.com/p/333fd8faa56e
  */

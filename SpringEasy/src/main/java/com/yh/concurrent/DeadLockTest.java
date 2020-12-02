@@ -3,9 +3,6 @@ package com.yh.concurrent;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 死锁 实战demo
  */
@@ -68,11 +65,11 @@ public class DeadLockTest {
 
     @Test
     public void test() {
-        List<Object> objectList = new ArrayList<>();
-        while (true) {
-            objectList.add(new Object());
-            System.out.println("添加对象个数" + objectList.size());
-        }
+        Thread thread = new Thread();
+        Thread th2=new Thread();
+        System.out.println(thread.getName());
+        System.out.println(th2.getName());
     }
+
 
 }

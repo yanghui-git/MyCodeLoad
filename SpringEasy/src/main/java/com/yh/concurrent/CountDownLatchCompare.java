@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * 闭锁
  * https://liangyihuai.blog.csdn.net/article/details/83106584?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-1
  * .control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-1.control
  * Java的CountDownLatch和CyclicBarrier的理解和区别
