@@ -1,7 +1,7 @@
 package lamada;
 
 import com.alibaba.fastjson.JSON;
-import com.yanghui.jackson.Student;
+import com.yh.jackson.Student;
 import org.junit.Test;
 
 import java.util.ArrayList;
