@@ -1,5 +1,6 @@
 package com.yh.file;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
@@ -42,6 +43,28 @@ public class FileUtil {
     @Test
     //文件读取
     public void test5() throws Exception {
-       System.out.print(FileUtils.readLines(new File("C:\\Users\\Administrator\\Desktop\\程序员\\","1.txt")));
+        System.out.print(FileUtils.readLines(new File("C:\\Users\\Administrator\\Desktop\\程序员\\", "1.txt")));
     }
+
+    @Test
+    /**
+     * 文件Md5值
+     *  https://www.cnblogs.com/pcheng/p/7724863.html
+     *  1 更改文件名不会影响md5
+     *  2更改内容如增加空格会影响
+     */
+    public void test6() throws Exception {
+        /**
+         * md5 步骤
+         * 1获取文件byte信息
+         * 2通过java自带MessageDigest加密
+         * 3转为16进制md5
+         */
+        String md5 = DigestUtils.md5Hex(new FileInputStream("/Users/hui.yang/Desktop/Ago/222.txt"));
+        System.out.println(md5);
+        String md6 = DigestUtils.md5Hex(new FileInputStream("/Users/hui.yang/Desktop/Ago/444.txt"));
+        System.out.println(md6);
+        System.out.println(md5.equals(md6));
+    }
+
 }
