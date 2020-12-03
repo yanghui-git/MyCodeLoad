@@ -29,21 +29,25 @@ public class FileUtil {
     @Test
     //文件复制
     public void test3() throws Exception {
-        FileUtils.copyToFile(new FileInputStream(new File("D:\\TSBrowserDownloads", "1.txt")), new File("D:\\TSBrowserDownloads", "3.txt"));
+        FileUtils.copyToFile(new FileInputStream(new File("/Users/hui.yang/Desktop", "Note.txt")),
+                new File("/Users/hui.yang/Desktop", "222.txt"));
         ;
     }
 
     @Test
     //文件写入
     public void test4() throws Exception {
-        List<String> test = Arrays.asList(new String[]{"1", "222", "yhhj"});
-        FileUtils.writeLines(new File("C:\\Users\\Administrator\\Desktop\\程序员\\", "1.txt"), test);
+        List<String> test = Arrays.asList(new String[]{"122222", "222", "yhhj", "sss"});
+        FileUtils.writeLines(new File("/Users/hui.yang/Desktop", "222.txt"), test);
     }
 
     @Test
     //文件读取
     public void test5() throws Exception {
-        System.out.print(FileUtils.readLines(new File("C:\\Users\\Administrator\\Desktop\\程序员\\", "1.txt")));
+        List<String> result = FileUtils.readLines(new File("/Users/hui.yang/Desktop", "Note.txt"));
+        result.stream().forEach(res -> {
+            System.out.println(res);
+        });
     }
 
     @Test
