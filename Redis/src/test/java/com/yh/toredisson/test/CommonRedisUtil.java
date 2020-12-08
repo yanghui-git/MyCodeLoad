@@ -134,7 +134,7 @@ public class CommonRedisUtil {
     public void Lock() throws Exception {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         Set<Callable<String>> futureSet = new HashSet<Callable<String>>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 10; i++) {
             futureSet.add(new Callable<String>() {
                 public String call() throws Exception {
                     //创建锁对象，并制定锁名称
