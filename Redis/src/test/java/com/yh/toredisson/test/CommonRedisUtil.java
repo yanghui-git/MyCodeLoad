@@ -205,4 +205,23 @@ public class CommonRedisUtil {
         out(redissonClient.getBucket("11test").get());
         out(redissonClient.getBucket("22test").get());
     }
+
+    /**
+     * 测试BlockQueue
+     */
+    @Test
+    public void RBlockQueue() {
+        RBlockingQueue rBlockingQueue = redissonClient.getBlockingQueue("block-queue-test");
+        rBlockingQueue.add("1");
+        rBlockingQueue.add("2");
+        rBlockingQueue.add("3");
+        //   out(rBlockingQueue.element());
+
+        out(rBlockingQueue.peek());
+        out(rBlockingQueue.peek());
+        out(rBlockingQueue.peek());
+        out(rBlockingQueue.peek());
+    }
+
+
 }

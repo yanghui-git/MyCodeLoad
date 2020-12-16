@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/Minio/pom.xml" />
         <option value="$PROJECT_DIR$/Minio8.0/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/Consul/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

@@ -15,15 +15,18 @@
         <module name="RedisTemplateTest" />
         <module name="SpringEasy" />
         <module name="Minio8.0" />
+        <module name="Consul" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="consul" target="1.8" />
       <module name="mytask" target="1.8" />
       <module name="SpringExceptionHandler" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="consul" options="-parameters" />
       <module name="mytask" options="-parameters" />
     </option>
   </component>
