@@ -1,6 +1,7 @@
 package com.yh.concurrent;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -12,19 +13,25 @@ public class AtomicIntegerDemo {
 
     static int a = 0;
 
+    static AtomicBoolean atomicBoolean = new AtomicBoolean(true);
+
     static AtomicInteger atomicInteger = new AtomicInteger(0);
 
     public static void main(String[] args) {
         //count次并发测试
         try {
-            intTest();
+            intDemo();
             atomicIntegerTest();
+
+            a = 0;
+            casDemo();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void intTest() throws Exception {
+
+    public static void intDemo() throws Exception {
         CountDownLatch countDownLatch = new CountDownLatch(count);
         //多线程并发对此操作
         for (int i = 0; i < count; i++) {
@@ -65,6 +72,35 @@ public class AtomicIntegerDemo {
         }
         countDownLatch.await();
         System.out.println(atomicInteger);
+    }
+
+
+    /**
+     * Cas https://www.jianshu.com/p/ae25eb3cfb5d   乐观锁
+     * @throws Exception
+     */
+    public static void casDemo() throws Exception {
+        CountDownLatch countDownLatch = new CountDownLatch(count);
+        for (int i = 0; i < count; i++) {
+            new Thread() {
+                @Override
+                public void run() {
+                    cas();
+                    countDownLatch.countDown();
+                }
+            }.start();
+        }
+        countDownLatch.await();
+        System.out.println(a);
+    }
+
+    public static void cas() {
+        if (atomicBoolean.compareAndSet(true, false)) {
+            a++;
+            atomicBoolean.set(true);
+        } else {
+            cas();
+        }
     }
 
 
