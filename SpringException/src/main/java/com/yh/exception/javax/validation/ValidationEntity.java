@@ -1,11 +1,14 @@
 package com.yh.exception.javax.validation;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
  *
  */
+@Data
 public class ValidationEntity {
 
     @NotNull
@@ -18,28 +21,4 @@ public class ValidationEntity {
     @Pattern(regexp = "^((25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))$"
     )
     private String ip;
-
-    public ValidationEntity() {
-    }
-
-    public ValidationEntity(String email, String ip) {
-        this.email = email;
-        this.ip = ip;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
 }

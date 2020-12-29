@@ -2,30 +2,38 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FlyWay" />
         <module name="RedissionTest" />
+        <module name="WebSdl" />
         <module name="Minio" />
+        <module name="Consul-Feign-Consumer" />
+        <module name="Consul-Feign-Producer" />
         <module name="RestTemplate" />
         <module name="Redis" />
         <module name="MybaticsPlus" />
         <module name="RedisTemplateTest" />
         <module name="SpringEasy" />
         <module name="Minio8.0" />
-        <module name="Consul" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="consul" target="1.8" />
+      <module name="ConsuLfeifn" target="1.5" />
+      <module name="ConsulFeign" target="1.8" />
       <module name="mytask" target="1.8" />
       <module name="SpringExceptionHandler" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Consul-Feign-Consumer" options="-parameters" />
+      <module name="Consul-Feign-Producer" options="-parameters" />
+      <module name="ConsulFeign" options="-parameters" />
       <module name="consul" options="-parameters" />
       <module name="mytask" options="-parameters" />
     </option>

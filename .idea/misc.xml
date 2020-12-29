@@ -14,10 +14,14 @@
         <option value="$PROJECT_DIR$/Minio8.0/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/Consul/pom.xml" />
+        <option value="$PROJECT_DIR$/Consul/Consul-Feign-Produce/pom.xml" />
+        <option value="$PROJECT_DIR$/Consul/Consul-Feign-Consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/Consul/Consul-Feign-Producer/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/ConsuLfeifn/pom.xml" />
         <option value="$PROJECT_DIR$/SpringException/RedisTemplateTest/pom.xml" />
       </set>
     </option>

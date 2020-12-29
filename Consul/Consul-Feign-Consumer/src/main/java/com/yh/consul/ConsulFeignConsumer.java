@@ -3,19 +3,15 @@ package com.yh.consul;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
+//将自己作为一个可以被Eureka Server发现注册的Client
 @EnableDiscoveryClient
-@RestController
-public class ConsulMain {
+// 将自己作为一个可以被其他服务通过Feign调用的Client
+@EnableFeignClients
+public class ConsulFeignConsumer {
     public static void main(String[] args) {
-        SpringApplication.run(ConsulMain.class);
-    }
-
-    @RequestMapping("/")
-    public String home() {
-        return "Hello World";
+        SpringApplication.run(ConsulFeignConsumer.class);
     }
 }

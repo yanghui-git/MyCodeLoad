@@ -20,7 +20,7 @@ public class MinioUtilTestTwo {
         List<Bucket> bucketList = MinioNewUtil.getMinioClient().listBuckets();
         //System.out.println(bucketList.stream().map(bucket -> bucket.name()).collect(Collectors.toList()));
         bucketList.stream().forEach(bucket -> System.out.println(bucket.name()));
-        Tags tag= MinioNewUtil.getMinioClient().getBucketTags(GetBucketTagsArgs.builder().bucket("new-one").build());
+      //  Tags tag= MinioNewUtil.getMinioClient().getBucketTags(GetBucketTagsArgs.builder().bucket("new-one").build());
         //获取所有bucket
         // System.out.println(JSON.toJSONString(MinioNewUtil.getMinioClient().listBuckets().toString()));
         //判断bucket是否存在

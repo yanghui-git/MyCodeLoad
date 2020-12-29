@@ -17,4 +17,10 @@ public class ValidationController {
         return JSON.toJSONString(validationEntity);
     }
 
+    @PostMapping("/two")
+    public String testTwo(@RequestBody Student student) {
+        return JSON.toJSONString(student);
+    }
+
+
 }
