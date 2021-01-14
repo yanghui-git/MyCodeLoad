@@ -21,6 +21,7 @@
         <module>SpringException</module>
         <module>WebSdl</module>
         <module>Consul</module>
+        <module>ElasticSearch</module>
     </modules>
 
 

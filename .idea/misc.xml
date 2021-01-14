@@ -17,12 +17,14 @@
         <option value="$PROJECT_DIR$/Consul/Consul-Feign-Produce/pom.xml" />
         <option value="$PROJECT_DIR$/Consul/Consul-Feign-Consumer/pom.xml" />
         <option value="$PROJECT_DIR$/Consul/Consul-Feign-Producer/pom.xml" />
+        <option value="$PROJECT_DIR$/ElasticSearch/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/ConsuLfeifn/pom.xml" />
         <option value="$PROJECT_DIR$/SpringException/RedisTemplateTest/pom.xml" />
+        <option value="$PROJECT_DIR$/WebSdl/pom.xml" />
       </set>
     </option>
   </component>

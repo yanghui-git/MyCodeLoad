@@ -1,5 +1,6 @@
 import com.yh.minio.MinioNewUtil;
 import io.minio.BucketExistsArgs;
+import io.minio.PutObjectArgs;
 import org.junit.Test;
 
 import java.io.FileInputStream;
@@ -28,10 +29,10 @@ public class MinioUtilTest {
     //测试上传文件
     @Test
     public void testFour() throws Exception {
-        FileInputStream fileInputStream = new FileInputStream("/Users/hui.yang/Desktop/note.txt");
-        // MinioNewUtil.getMinioClient().putObject(PutObjectArgs.builder()
-        //             .bucket("bucket-add-test").object("notetest1.txt").stream(fileInputStream,fileInputStream.available(),-1)
-        //          .build());
+        FileInputStream fileInputStream = new FileInputStream("/Users/hui.yang/Desktop/222.txt");
+         MinioNewUtil.getMinioClient().putObject(PutObjectArgs.builder()
+                     .bucket("bucket-add-test").object("55555.txt").stream(fileInputStream,fileInputStream.available(),-1)
+                  .build());
     }
 
     //测试下载文件

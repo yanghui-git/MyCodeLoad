@@ -8,8 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FlyWay" />
+        <module name="ElasticSearch" />
         <module name="RedissionTest" />
-        <module name="WebSdl" />
         <module name="Minio" />
         <module name="Consul-Feign-Consumer" />
         <module name="Consul-Feign-Producer" />
@@ -27,6 +27,7 @@
       <module name="ConsulFeign" target="1.8" />
       <module name="mytask" target="1.8" />
       <module name="SpringExceptionHandler" target="1.5" />
+      <module name="WebSdl" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
