@@ -1,0 +1,7 @@
+#base
+server:
+  port: 8082
+#spring
+spring:
+  application:
+    name: springboot-elasticsearch-example
