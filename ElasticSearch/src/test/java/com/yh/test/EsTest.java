@@ -39,7 +39,7 @@ public class EsTest {
 
     @Test
     public void get() throws Exception {
-        esUtil.getDocument("demohaha", "doc", "1");
+        esUtil.getDocument("demohaha", "doc", "E_fJA3cBjyjiQxunntuf");
     }
 
     @Test
@@ -56,5 +56,7 @@ public class EsTest {
         System.out.println("更新后： ");
         esUtil.getDocument("demohaha", "doc", "GPfJA3cBjyjiQxunntv9");
     }
+
+
 
 }
