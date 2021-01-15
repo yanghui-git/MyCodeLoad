@@ -1,7 +1,7 @@
 package com.yh.test;
 
-import com.sun.source.tree.AssertTree;
 import com.yh.test.util.ESUtil;
+import com.yh.test.util.dao.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +28,33 @@ public class EsTest {
         //  esUtil.deleteIndex("demohaha");
         assertTrue(esUtil.isExistIndex("demohaha"));
     }
+
+    @Test
+    public void add2() throws Exception {
+        for (int i = 0; i <= 12; i++) {
+            Student student = new Student("test" + i, 20 + i, "num" + i);
+            esUtil.addDocument("demohaha", student);
+        }
+    }
+
+    @Test
+    public void get() throws Exception {
+        esUtil.getDocument("demohaha", "doc", "1");
+    }
+
+    @Test
+    public void delete() throws Exception {
+        esUtil.deleteDocument("demohaha", "doc", "1");
+    }
+
+    @Test
+    public void update() throws Exception {
+        System.out.println("更新前：    ");
+        esUtil.getDocument("demohaha", "doc", "GPfJA3cBjyjiQxunntv9");
+        esUtil.upDateDocument("demohaha", "doc", "GPfJA3cBjyjiQxunntv9",
+                new Student("更新测试", 100, ""));
+        System.out.println("更新后： ");
+        esUtil.getDocument("demohaha", "doc", "GPfJA3cBjyjiQxunntv9");
+    }
+
 }
