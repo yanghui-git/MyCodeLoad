@@ -1,5 +1,6 @@
 import com.yh.minio.MinioNewUtil;
 import io.minio.*;
+import io.minio.http.Method;
 import io.minio.messages.Bucket;
 import io.minio.messages.Tag;
 import io.minio.messages.Tags;
@@ -20,7 +21,7 @@ public class MinioUtilTestTwo {
         List<Bucket> bucketList = MinioNewUtil.getMinioClient().listBuckets();
         //System.out.println(bucketList.stream().map(bucket -> bucket.name()).collect(Collectors.toList()));
         bucketList.stream().forEach(bucket -> System.out.println(bucket.name()));
-      //  Tags tag= MinioNewUtil.getMinioClient().getBucketTags(GetBucketTagsArgs.builder().bucket("new-one").build());
+        //  Tags tag= MinioNewUtil.getMinioClient().getBucketTags(GetBucketTagsArgs.builder().bucket("new-one").build());
         //获取所有bucket
         // System.out.println(JSON.toJSONString(MinioNewUtil.getMinioClient().listBuckets().toString()));
         //判断bucket是否存在
@@ -46,20 +47,20 @@ public class MinioUtilTestTwo {
     //测试上传文件
     @Test
     public void testFour() throws Exception {
-        FileInputStream fileInputStream = new FileInputStream("/Users/hui.yang/Desktop/note.txt");
-        /* MinioNewUtil.getMinioClient().putObject(PutObjectArgs.builder()
-                     .bucket("new-one").object("note.txt").stream(fileInputStream,fileInputStream.available(),-1)
-                  .build());*/
-
+        FileInputStream fileInputStream = new FileInputStream("/Users/hui.yang/Downloads/1.txt");
+        ObjectWriteResponse objectWriteResponse = MinioNewUtil.getMinioClient().putObject(PutObjectArgs.builder()
+                .bucket("new-one").object("1.txt").stream(fileInputStream, fileInputStream.available(), -1)
+                .build());
+        System.out.println(objectWriteResponse);
         //加密上传
-        ServerSideEncryption sseS3 = new ServerSideEncryptionS3();
+        //   ServerSideEncryption sseS3 = new ServerSideEncryptionS3();
         // Create encrypted object 'my-objectname' using SSE-S3 in 'my-bucketname' with content
         // from the input stream.
-        MinioNewUtil.getMinioClient().putObject(
-                PutObjectArgs.builder().bucket("ota-patch").object("s3.txt").stream(
+        //  MinioNewUtil.getMinioClient().putObject(
+             /*   PutObjectArgs.builder().bucket("ota-patch").object("s3.txt").stream(
                         fileInputStream, fileInputStream.available(), -1)
                         .sse(sseS3)
-                        .build());
+                        .build());*/
 
     }
 
@@ -71,7 +72,7 @@ public class MinioUtilTestTwo {
                 MinioNewUtil.getMinioClient().getObject(GetObjectArgs.builder().bucket("new-one")
                         .object("note.txt")
                         .build());
-
+        System.out.println(fileInputStream);
         System.out.println(fileInputStream == null);
 
         //直接下载到本地
@@ -79,6 +80,23 @@ public class MinioUtilTestTwo {
         //           .bucket("bucket-add").object("1.txt")
         //           .filename("/Users/hui.yang/Desktop/testty777777y.txt")
         //          .build());
+    }
+
+    /**
+     * 获取下载文件的下载路径 直接从oss下载的路径
+     * @throws Exception
+     */
+    @Test
+    public void download() throws Exception {
+        String url =
+                MinioNewUtil.getMinioClient().getPresignedObjectUrl(
+                        GetPresignedObjectUrlArgs.builder()
+                                .method(Method.GET)
+                                .bucket("new-one")
+                                .object("note.txt")
+                                .expiry(60 * 60 * 24 * 6)
+                                .build());
+        System.out.println(url);
     }
 
     //测试复制文件
