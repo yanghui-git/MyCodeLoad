@@ -126,7 +126,7 @@ package com.yh.testone;//package com.yanghui.testone;
 ////    }
 //
 //    @Test
-//    public void postOne() {
+/*//    public void postOne() {
 //        CloseableHttpClient httpClient = HttpClients.createDefault();
 //        HttpResponse response;
 //        HttpPost httpPost = new HttpPost("http://10.1.200.204/network/v2/frontapi/mos/agenyamlconfig/createorupdate");
@@ -143,7 +143,7 @@ package com.yh.testone;//package com.yanghui.testone;
 //            e.printStackTrace();
 //        }
 //
-//    }
+//    }*/
 //
 //    public static void main(String[] args) {
 //

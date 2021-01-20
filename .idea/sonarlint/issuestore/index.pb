@@ -136,12 +136,8 @@ YSpringException/src/main/java/com/yh/exception/javax/validation/ValidationContr
 LSpringException/src/main/java/com/yh/exception/javax/validation/Student.java,1/0/10ffc41a5dc72ca6a2593a798e55637221e4ef92
 v
 FConsul/Consul-Feign-Consumer/src/main/resources/application.properties,7/5/754260788fbd6557e94d3578c1cf473459a0288c
-v
-FConsul/Consul-Feign-Producer/src/main/resources/application.properties,b/8/b80d59f5e10a387492173dd4f5b563bdca10f5b4
 m
 =Consul/Consul-Feign-Consumer/src/main/resources/bootstrap.yml,a/c/ac139fa1d72d9c238dff2c3312aaaf1d7626f9dd
-m
-=Consul/Consul-Feign-Producer/src/main/resources/bootstrap.yml,e/f/ef31a50e6207b50a43fd2d3e1fe9a2425ba944b5
 Ž
 ^Consul/Consul-Feign-Producer/src/main/java/com/yh/consul/controller/ConsulFeignController.java,f/7/f716a27335951724acb6dd91cc80060a4ef1b495
 T
