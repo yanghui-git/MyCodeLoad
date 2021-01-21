@@ -1,7 +1,9 @@
 package com.yh.proxy;
 
+import com.yh.proxy.dynamic.CglibStudent;
 import com.yh.proxy.dynamic.DynamicStudentService;
 import com.yh.proxy.stati.StaticStudentService;
+import net.sf.cglib.proxy.Enhancer;
 import org.junit.Test;
 
 import java.lang.reflect.InvocationHandler;
@@ -28,6 +30,7 @@ public class TestStudent {
      */
     @Test
     public void dynamic() throws Exception {
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         //代理的真实对象
         StudentService studentService = new StudentServiceImpl();
         InvocationHandler invocationHandler = new DynamicStudentService(studentService);
@@ -37,5 +40,12 @@ public class TestStudent {
 
         StudentService service = (StudentService) Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);
         service.add();
+    }
+
+    @Test
+    public void cglib() throws Exception {
+        CglibStudent cglib = new CglibStudent();
+        StudentServiceImpl studentService = (StudentServiceImpl) cglib.getInstance(new StudentServiceImpl());
+        studentService.add();
     }
 }
