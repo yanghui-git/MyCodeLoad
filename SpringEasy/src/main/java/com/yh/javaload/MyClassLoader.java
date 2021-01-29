@@ -10,6 +10,10 @@ import java.nio.file.Files;
  */
 public class MyClassLoader extends ClassLoader {
 
+    /**
+     *  Note： loadClass()也能被重写，但是我们不建议这样做，否则所有的类都会走这个方法来加载类；
+     *  那么虚拟机内置的一些类也会用这个方法里面的逻辑来加载，然后报错
+     */
     @Override
     protected Class<?> findClass(String name) {
         Class clazz = null;
