@@ -7,7 +7,7 @@ import java.util.Date;
 
 @AllArgsConstructor
 @Data
-public class Student {
+public class StudentVo {
     String name;
     Date date;
 }

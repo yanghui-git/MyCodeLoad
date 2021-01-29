@@ -13,7 +13,7 @@ public class ValueDemo {
      * https://blog.csdn.net/zhangzehai2234/article/details/88564759
      * @Value 设备默认值
      */
-    @Value("${test.name2:}")
+    @Value("${test.name2:/hah/2}")
     private String name;
 
     @Value("${test.age2:-1}")
@@ -33,4 +33,7 @@ public class ValueDemo {
         System.out.println(testList);
         return studentDemo;
     }
+
+
+
 }

@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class ConsulFeignController {
 
@@ -25,4 +27,10 @@ public class ConsulFeignController {
     public String test23(@RequestParam int a, @RequestParam int b) {
         return feiApiService.test2(a, b);
     }
+
+    @GetMapping("/consumer/feign/list")
+    public List<StudentVo> test3() {
+        return feiApiService.test3();
+    }
+
 }
