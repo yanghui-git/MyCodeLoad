@@ -20,7 +20,7 @@ public class CountDownLatchDemo {
         try {
             // noCountDownLatch();
             CountDownLatch();
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
 

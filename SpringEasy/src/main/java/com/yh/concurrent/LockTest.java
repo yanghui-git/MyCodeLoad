@@ -14,7 +14,9 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class LockTest {
 
-    private static int count = 55;
+    private static int count = 100;
+
+    private static int n = 1;
 
     static Lock lock = new ReentrantLock();
 
@@ -26,7 +28,7 @@ public class LockTest {
             set.add(new Callable() {
                 @Override
                 public Object call() throws Exception {
-                    //  lock(thread);
+                    //   lock(thread);
                     tryLock(thread);
                     return null;
                 }
@@ -51,7 +53,7 @@ public class LockTest {
         try {
             //获取锁
             lock.lock();
-            System.out.println(i + "获取到锁～～" + new Date());
+            System.out.println(i + "获取到锁～～" + new Date() + "    :" + n++);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -72,7 +74,7 @@ public class LockTest {
                 System.out.println(i + "没有获取到锁");
                 return;
             }
-            System.out.println(i + "😄😄 获取到锁了");
+            System.out.println(i + "😄😄 获取到锁了   :" + n++);
             // lock.unlock();
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -1,8 +1,6 @@
 package com.yh.collection;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * https://www.cnblogs.com/wlrhnh/p/7256969.html
@@ -22,5 +20,10 @@ public class LinkedHastSetTest {
         stringSet.add("java");
         stringSet.add("python");
         System.out.println(stringSet);
+
+        //ArrayList
+        List<Integer> list=new ArrayList<>();
     }
+
+
 }
