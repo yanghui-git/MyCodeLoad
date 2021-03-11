@@ -15,8 +15,8 @@ public class FileUtil {
     @Test
     //inputStream 变成file
     public void test() throws Exception {
-        FileInputStream fileInputStream = new FileInputStream(new File("D:\\TSBrowserDownloads", "1.txt"));
-        org.apache.commons.io.FileUtils.copyInputStreamToFile(fileInputStream, new File("D:\\TSBrowserDownloads", "2.txt"));
+        FileInputStream fileInputStream = new FileInputStream(new File("/Users/hui.yang/Desktop/Soft/", "run.sh"));
+        org.apache.commons.io.FileUtils.copyInputStreamToFile(fileInputStream, new File("/Users/hui.yang/Desktop/Soft/te/st/", "haha.sh"));
     }
 
     @Test

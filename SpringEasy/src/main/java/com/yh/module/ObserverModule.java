@@ -12,7 +12,11 @@ public class ObserverModule {
       //  subject.attach(observerImplOne);
         ObserverImplTwo observerImplTwo = new ObserverImplTwo();
         subject.attach(observerImplTwo);
+        subject.attach(observerImplOne);
         //变更通知
+        subject.notifyChange();
+
+        subject.delete(observerImplOne);
         subject.notifyChange();
     }
 
