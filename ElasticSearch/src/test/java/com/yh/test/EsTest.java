@@ -39,22 +39,22 @@ public class EsTest {
 
     @Test
     public void get() throws Exception {
-        esUtil.getDocument("demohaha", "doc", "E_fJA3cBjyjiQxunntuf");
+        esUtil.getDocument("demohaha", "_doc", "rLQ3OngBEkkMZmzxnufH");
     }
 
     @Test
     public void delete() throws Exception {
-        esUtil.deleteDocument("demohaha", "doc", "1");
+        esUtil.deleteDocument("demohaha", "_doc", "1");
     }
 
     @Test
     public void update() throws Exception {
         System.out.println("更新前：    ");
-        esUtil.getDocument("demohaha", "doc", "GPfJA3cBjyjiQxunntv9");
-        esUtil.upDateDocument("demohaha", "doc", "GPfJA3cBjyjiQxunntv9",
+        esUtil.getDocument("demohaha", "_doc", "rLQ3OngBEkkMZmzxnufH");
+        esUtil.upDateDocument("demohaha", "_doc", "rLQ3OngBEkkMZmzxnufH",
                 new Student("更新测试", 100, ""));
         System.out.println("更新后： ");
-        esUtil.getDocument("demohaha", "doc", "GPfJA3cBjyjiQxunntv9");
+        esUtil.getDocument("demohaha", "_doc", "rLQ3OngBEkkMZmzxnufH");
     }
 
 

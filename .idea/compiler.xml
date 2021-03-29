@@ -8,13 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FlyWay" />
+        <module name="Redis" />
         <module name="ElasticSearch" />
         <module name="RedissionTest" />
         <module name="Minio" />
         <module name="Consul-Feign-Consumer" />
         <module name="Consul-Feign-Producer" />
         <module name="RestTemplate" />
-        <module name="Redis" />
+        <module name="Netty" />
         <module name="MybaticsPlus" />
         <module name="RedisTemplateTest" />
         <module name="SpringEasy" />

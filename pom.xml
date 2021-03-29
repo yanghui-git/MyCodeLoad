@@ -21,6 +21,7 @@
         <module>SpringException</module>
         <module>Consul</module>
         <module>ElasticSearch</module>
+        <module>Netty</module>
     </modules>
 
 
