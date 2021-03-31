@@ -102,4 +102,15 @@ public class ToRedisSonTest {
         out(new String(rBitSet.toByteArray()));
 
     }
+
+
+    @Test
+    public void server10() {
+        RBucket rBucket = redissonClient.getBucket("BuLlong");
+        rBucket.set("777");
+        out(rBucket.get());
+        rBucket.delete();
+      //  rBucket.trySet("888");
+        out(rBucket.get());
+    }
 }

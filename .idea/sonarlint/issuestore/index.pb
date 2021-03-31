@@ -276,3 +276,5 @@ c
 3Netty/src/main/java/com/yh/netty/aio/AioServer.java,3/5/35800b92377b5a4d39c6f8770a770db627b540a6
 c
 3Netty/src/main/java/com/yh/netty/aio/AioClient.java,d/2/d20ac0d4fecea73ec943b773d149a516f3a1f543
+j
+:SpringEasy/src/main/java/com/yh/lamada/BiFunctionTest.java,0/2/028857a3953b2cd07073e452873ea5b87b445cb2

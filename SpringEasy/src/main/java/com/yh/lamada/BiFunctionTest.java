@@ -19,7 +19,7 @@ public class BiFunctionTest {
         System.out.println(biFunction.apply(3, 6));
         //
         biFunction = (arg1, args2) -> arg1 - args2;
-        System.out.println(biFunction.apply(10, 5));
+        System.out.println(biFunction.apply(10, 6));
     }
 
 
