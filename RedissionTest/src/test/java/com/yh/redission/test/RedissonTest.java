@@ -16,6 +16,11 @@ public class RedissonTest {
     @Autowired
     private RedissonClient redissonClient;
 
+    @Test
+    public void testOne() {
+        RBucket rBucket = redissonClient.getBucket("test-rdb222");
+        rBucket.set("888");
+    }
 
     /**
      * 感觉像对hash操作
@@ -25,10 +30,11 @@ public class RedissonTest {
         //操作数据
         RMap rMap = redissonClient.getMap("redisson-1");
         rMap.put("name", "redisson-name");
-        rMap.put("age", 20);
+        rMap.put("age", 22);
         //
         out(rMap.containsKey("name"));
         out(rMap.get("age"));
+
     }
 
 
@@ -116,7 +122,7 @@ public class RedissonTest {
     }
 
     @Test
-    public void six(){
+    public void six() {
         System.out.println("22".concat("yh"));
     }
 }
