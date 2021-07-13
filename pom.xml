@@ -22,6 +22,7 @@
         <module>Consul</module>
         <module>ElasticSearch</module>
         <module>Netty</module>
+        <module>Math</module>
     </modules>
 
 
