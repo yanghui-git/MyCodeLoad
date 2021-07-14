@@ -18,6 +18,7 @@
         <option value="$PROJECT_DIR$/Consul/Consul-Feign-Consumer/pom.xml" />
         <option value="$PROJECT_DIR$/Consul/Consul-Feign-Producer/pom.xml" />
         <option value="$PROJECT_DIR$/ElasticSearch/pom.xml" />
+        <option value="$PROJECT_DIR$/Math/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

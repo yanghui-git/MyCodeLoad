@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="FlyWay" />
         <module name="Redis" />
+        <module name="Math" />
         <module name="ElasticSearch" />
         <module name="RedissionTest" />
         <module name="Minio" />

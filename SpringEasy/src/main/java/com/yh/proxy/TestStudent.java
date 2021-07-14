@@ -3,7 +3,7 @@ package com.yh.proxy;
 import com.yh.proxy.dynamic.CglibStudent;
 import com.yh.proxy.dynamic.DynamicStudentService;
 import com.yh.proxy.stati.StaticStudentService;
-import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.core.DebuggingClassWriter;
 import org.junit.Test;
 
 import java.lang.reflect.InvocationHandler;
@@ -67,6 +67,8 @@ public class TestStudent {
 
     @Test
     public void cglib() throws Exception {
+        // 设置输出代理类到指定路径，便于后面分析
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/hui.yang/IdeaProjects/MyCodeLoad2.0");
         CglibStudent cglib = new CglibStudent();
         StudentServiceImpl studentService = (StudentServiceImpl) cglib.getInstance(new StudentServiceImpl());
         studentService.add();
