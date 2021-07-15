@@ -318,3 +318,13 @@ k
 ;Math/src/main/java/com/yh/math/test/DynamicProgramming.java,1/9/19cd053c643b09da2739b360cb7a21ccc7b37bda
 a
 1Math/src/main/java/com/yh/math/test/EasyTest.java,d/e/de58c96cdea67be64afa1eb3f9edcf6e35f92b3e
+u
+ESpringEasy/src/main/java/com/yh/proxy/stati/StaticStudentService.java,9/7/97c49fe63f21b7b41a4bc8c26da68b215eae7343
+i
+9SpringEasy/src/main/java/com/yh/proxy/StudentService.java,b/9/b969f134c8034e8d9eeecd39a68e71aaaaaaec2e
+x
+HSpringEasy/src/main/java/com/yh/proxy/dynamic/DynamicStudentService.java,d/7/d7f46f25ae687516f92ba7c49c869503e20eeff0
+m
+=SpringEasy/src/main/java/com/yh/proxy/StudentServiceImpl.java,9/5/95ac9101eb1b36cc687e6de77480a21b500148f5
+c
+3Math/src/main/java/com/yh/math/map/HashMapTest.java,5/5/55dd651e9dfc3d1e1b869e1f931bf89bf0c37257

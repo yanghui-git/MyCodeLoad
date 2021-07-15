@@ -16,8 +16,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * 线程不安全体现 1  是否出现hash 碰撞💥       if ((p = tab[i = (n - 1) & hash]) == null)
  *                         tab[i] = newNode(hash, key, value, null);
  *
- *           2    if (++size > threshold)   前缀判断
+ *           2    if (++size > threshold)   前缀判断  ++ 自身的非原子性操作 非安全
  *             resize();
+ *
  *
     TODO: 2021/7/15   ConcurrentHashMap 源码探究  / java1.7**
  *
