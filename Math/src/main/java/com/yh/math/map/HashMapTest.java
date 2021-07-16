@@ -50,4 +50,12 @@ public class HashMapTest {
         map.put("test20","test2");
         System.out.println(map.get(1));
     }
+
+    @Test
+    public void testTwo(){
+        for(;;){
+            System.out.println(666);
+        }
+    }
+
 }
