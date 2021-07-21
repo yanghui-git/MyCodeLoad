@@ -3,13 +3,9 @@ package com.yh.math.queue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.junit.Test;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 手写队列
@@ -22,15 +18,25 @@ public class LinkedListTest {
         queue.add(1);
         queue.add(2);
         queue.add(10);
-      //  System.out.println(queue.toString());
+        //  System.out.println(queue.toString());
         System.out.println(queue.peek());
+    }
+
+
+    @Test
+    public void testTwo() {
+        Deque deque = new MyQueue();
+        deque.push(1);
+        deque.push(2);
+        deque.push(3);
+        System.out.println(deque.peek());
     }
 
 
     /**
      * 手写queue
      */
-    class MyQueue implements Queue {
+    class MyQueue implements Deque {
 
         /**
          * 底层Node
@@ -46,12 +52,34 @@ public class LinkedListTest {
             Node<E> next;
         }
 
+        /**
+         * 双端队列 作栈处理
+         */
+        @Override
+        public void push(Object o) {
+            Node l = first;
+            Node newNode = new Node(o, null, first);
+            //更新前置节点
+            first = newNode;
+            if (l == null) {
+                last = newNode;
+            } else {
+                l.pre = newNode;
+            }
+        }
+
+        @Override
+        public Object pop() {
+            return null;
+        }
+
         //头部节点
         private Node first = null;
         //尾部节点
         private Node last = null;
         //
         private int size = 0;
+
 
         @Override
         public int size() {
@@ -74,6 +102,11 @@ public class LinkedListTest {
         }
 
         @Override
+        public Iterator descendingIterator() {
+            return null;
+        }
+
+        @Override
         public Object[] toArray() {
             return new Object[0];
         }
@@ -81,6 +114,76 @@ public class LinkedListTest {
         @Override
         public Object[] toArray(Object[] a) {
             return new Object[0];
+        }
+
+        @Override
+        public void addFirst(Object o) {
+
+        }
+
+        @Override
+        public void addLast(Object o) {
+
+        }
+
+        @Override
+        public boolean offerFirst(Object o) {
+            return false;
+        }
+
+        @Override
+        public boolean offerLast(Object o) {
+            return false;
+        }
+
+        @Override
+        public Object removeFirst() {
+            return null;
+        }
+
+        @Override
+        public Object removeLast() {
+            return null;
+        }
+
+        @Override
+        public Object pollFirst() {
+            return null;
+        }
+
+        @Override
+        public Object pollLast() {
+            return null;
+        }
+
+        @Override
+        public Object getFirst() {
+            return null;
+        }
+
+        @Override
+        public Object getLast() {
+            return null;
+        }
+
+        @Override
+        public Object peekFirst() {
+            return null;
+        }
+
+        @Override
+        public Object peekLast() {
+            return null;
+        }
+
+        @Override
+        public boolean removeFirstOccurrence(Object o) {
+            return false;
+        }
+
+        @Override
+        public boolean removeLastOccurrence(Object o) {
+            return false;
         }
 
         @Override
