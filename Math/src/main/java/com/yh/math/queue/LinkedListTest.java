@@ -11,6 +11,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Queue;
 
+/**
+ * 手写队列
+ */
 public class LinkedListTest {
 
     @Test
