@@ -8,7 +8,9 @@ import org.junit.Test;
 import java.util.*;
 
 /**
- * 手写队列
+ * 手写双端队列
+ * https://blog.csdn.net/l540675759/article/details/62893335
+ *
  */
 public class LinkedListTest {
 
