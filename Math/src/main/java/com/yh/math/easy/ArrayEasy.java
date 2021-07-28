@@ -60,4 +60,14 @@ public class ArrayEasy {
         }
         Arrays.asList(arr).stream().forEach(a -> System.out.println(a));
     }
+
+
+    @Test
+    public void test5() {
+        String[] arr = new String[]{"1", "2", "3", "4", "5"};
+        String[] newArr=new String[10] ;
+        System.arraycopy(arr,0,newArr,5,arr.length);
+        Arrays.asList(newArr).stream().forEach(a -> System.out.println(a));
+        System.out.println("test".charAt(0));
+    }
 }
