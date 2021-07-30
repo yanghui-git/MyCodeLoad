@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 /**
  * 动态代理
+ * InvokeHandler
  */
 public class DynamicStudentService implements InvocationHandler {
 

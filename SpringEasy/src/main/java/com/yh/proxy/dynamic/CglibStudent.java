@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
  * cgLib 代理
  * https://zhuanlan.zhihu.com/p/106069224 源码解读
  *
+ * MethodInterrupt
  */
 public class CglibStudent implements MethodInterceptor {
 
