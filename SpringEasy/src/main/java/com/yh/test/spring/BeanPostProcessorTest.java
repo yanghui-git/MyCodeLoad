@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class BeanPostProcessorTest implements BeanPostProcessor {
 
     /**
-     * bean初始化方法调用前 被调用
+     * bean初始化方法调用前(InitBean....) 被调用
      *
      * @param bean
      * @param beanName
@@ -22,14 +22,14 @@ public class BeanPostProcessorTest implements BeanPostProcessor {
      */
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("before ..." + beanName);
-      /*  if (beanName.equals("myBeanPostProcessor")) {
+        // System.out.println("before ..." + beanName);
+        if (beanName.equals("myBeanPostProcessor")) {
             System.out.println("bean 初始化之前调用");
-        }*/
+        }
         return bean;
     }
 
- /*   @Bean
+/*    @Bean
     public MyBeanPostProcessor getMyBeanPostProcessor() {
         System.out.println("开始实例化 MyBeanPostProcessor");
         MyBeanPostProcessor myBeanPostProcessor = new MyBeanPostProcessor("test", 20);
@@ -37,7 +37,7 @@ public class BeanPostProcessorTest implements BeanPostProcessor {
     }*/
 
     /**
-     * bean初始化方法调用后 被调用
+     * bean初始化方法调用后(InitBean.... ) 被调用
      *
      * @param bean
      * @param beanName
@@ -46,10 +46,10 @@ public class BeanPostProcessorTest implements BeanPostProcessor {
      */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("after ..." + beanName);
-   /*     if (beanName.equals("myBeanPostProcessor")) {
+        //  System.out.println("after ..." + beanName);
+        if (beanName.equals("myBeanPostProcessor")) {
             System.out.println("bean 初始化之后调用");
-        }*/
+        }
         return bean;
     }
 
