@@ -10,7 +10,8 @@ public class ThreadLocalTest {
 
         TaskTwo taskTwo = new TaskTwo();
         for (int i = 0; i < 5; i++) {
-            new Thread(() -> System.out.println("222" + Thread.currentThread().getName() + "thread local " + taskTwo.cal(10).toString())).start();
+            int j=i;
+            new Thread(() -> System.out.println("222" + Thread.currentThread().getName() + "thread local " + taskTwo.cal(j).toString())).start();
         }
     }
 
