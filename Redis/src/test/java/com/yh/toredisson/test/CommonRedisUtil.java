@@ -138,6 +138,21 @@ public class CommonRedisUtil {
             futureSet.add(new Callable<String>() {
                 public String call() throws Exception {
                     //创建锁对象，并制定锁名称
+                    /**
+                     * Redisson 缓存续订 源码探究  看门狗后台线程 每10s更新
+                     *
+                     * https://zhuanlan.zhihu.com/p/298332757
+                     *
+                     * lockWatchdogTimeout 30s  看门狗 异步线程 ***
+                     * 1 renewExpiration()
+                     * netty 定时任务执行 检测
+                     * 2 netty internalLockLeaseTime / 3  也就是每10s调用一次
+                     * io.netty.util;
+                     *
+                     * public interface TimerTask
+                     *
+                     *
+                     */
                     RLock rLock = redissonClient.getLock("lock-test");
                     // 获取锁并设置失效时间 20*1000ms
                     boolean isGetLock = rLock.tryLock(0, 20000, TimeUnit.MILLISECONDS);
