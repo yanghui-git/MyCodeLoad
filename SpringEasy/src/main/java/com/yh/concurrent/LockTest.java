@@ -65,6 +65,9 @@ public class LockTest {
 
     /**
      * tryLock demo
+     *
+     * Java https://zhuanlan.zhihu.com/p/178991617
+     * AQS 框架解析
      */
     public static void tryLock(int i) {
         try {
