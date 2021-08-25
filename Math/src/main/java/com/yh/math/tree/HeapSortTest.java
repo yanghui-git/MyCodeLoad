@@ -24,8 +24,8 @@ public class HeapSortTest {
      */
     public static void heapSort(int[] array) {
         // 1 将无序数组构建成最大堆
-        for (int i = array.length / 2; i >= 0; i--) {
-            downAdjust(array, i, array.length - 1);
+        for (int i = (array.length - 2) / 2; i >= 0; i--) {
+            downAdjust(array, i, array.length);
         }
         System.out.println(Arrays.toString(array));
         //2  循环删除堆顶元素,移动到集合尾部，调整堆产生新的堆顶
