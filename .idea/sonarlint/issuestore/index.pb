@@ -398,3 +398,9 @@ h
 8SpringEasy/src/main/java/com/yh/lamada/LamadaMinMax.java,b/3/b3cde8f47e2954da86d3f22e9677b48d80cba024
 v
 FSpringEasy/src/main/java/com/yh/test/spring/BeanPostProcessorTest.java,f/8/f826ec37af669822d9e48312014019b9776bfe1b
+b
+2Math/src/main/java/com/yh/math/easy/SlideEasy.java,e/8/e8fb6302f6014c01d68f88fa63d1d01e4af300b2
+^
+.Math/src/main/java/com/yh/math/easy/Hello.java,3/8/38a73576ed9c33ec040515cdd09e34183bed7d1c
+e
+5Math/src/main/java/com/yh/math/tree/TreeNodeTest.java,d/5/d53da7d684fb0740c2e582c543cc54b397435eef
