@@ -14,7 +14,7 @@ import java.util.function.Supplier;
  * Java CompletableFuture
  * https://blog.csdn.net/admin123404/article/details/111168902?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-15.no_search_link&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-15.no_search_link
  */
-public class BasicFuture {
+public class CompletableFutureTest {
 
     /**
      * 传统方式
