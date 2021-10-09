@@ -404,3 +404,7 @@ b
 .Math/src/main/java/com/yh/math/easy/Hello.java,3/8/38a73576ed9c33ec040515cdd09e34183bed7d1c
 e
 5Math/src/main/java/com/yh/math/tree/TreeNodeTest.java,d/5/d53da7d684fb0740c2e582c543cc54b397435eef
+{
+KRedisTemplateTest/src/main/java/com/yh/redistemplate/RedisTemplateTest.java,e/8/e8fa25e2fbb2d805354b8244a23a8dab204a599d
+„
+TRedisTemplateTest/src/test/java/com/yh/redistemplate/test/RedisTemplateTestDemo.java,3/2/32c0093b1e7ad167ecad7bedb0f8568ef4e786b4
