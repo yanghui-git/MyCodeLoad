@@ -3,6 +3,7 @@ package com.yh.test;
 import com.yh.test.util.ESUtil;
 import com.yh.test.util.dao.Student;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,7 @@ public class EsTest {
     @Autowired
     private ESUtil esUtil;
 
+    @BeforeEach
     @Test
     public void add() throws Exception {
         esUtil.createIndex("demohaha");
