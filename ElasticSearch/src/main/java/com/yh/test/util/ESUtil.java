@@ -82,7 +82,7 @@ public class ESUtil {
         //必须加此判断，不存在此索引的话，会抛出异常
         // [estest] ElasticsearchStatusException[Elasticsearch exception [type=index_not_found_exception, reason=no such index [estest]]
         if (!this.isExistIndex(indexName)) {
-            System.out.println("删除索引成功..............,不存在此索引");
+            System.out.println("es删除索引成功..............,不存在此索引");
             return;
         }
         DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest(indexName);
@@ -94,8 +94,18 @@ public class ESUtil {
      * 增加文档
      */
     public void addDocument(String indexName, Object object) throws Exception {
+        this.addDocument(indexName, object, "");
+    }
+
+    /**
+     * 增加文档
+     *
+     * @param id 数据录入id
+     *           当传入的id为空时，es会自动生成一个id 0KJXcpABYwRckKe6wTQP，zqJXcpABYwRckKe6wDTd
+     */
+    public void addDocument(String indexName, Object object, String id) throws Exception {
         //创建索引请求对象
-        IndexRequest indexRequest = new IndexRequest(indexName);
+        IndexRequest indexRequest = new IndexRequest(indexName).id(id);
         // 将对象转换为 byte 数组
         byte[] json = JSON.toJSONBytes(object);
         // 设置文档内容
@@ -105,38 +115,62 @@ public class ESUtil {
         System.out.println("es 增加文档成功........" + indexResponse);
     }
 
+
     /**
      * 获取文档
+     *
+     * @param indexName 不存在此索引 也会报错
+     * @param id        如果没有传入文档id，则会直接报错
      */
-    public void getDocument(String indexName, String type, String id) throws Exception {
+    public void getDocument(String indexName, String id) throws Exception {
+        if (!isExistIndex(indexName) || StringUtils.isEmpty(indexName)) {
+            throw new RuntimeException("不存在此索引......请检查索引" + indexName);
+        }
+        if (StringUtils.isEmpty(id)) {
+            throw new RuntimeException("请传入文档id" + id);
+        }
         //获取请求对象
-        GetRequest getRequest = new GetRequest(indexName, type, id);
+        GetRequest getRequest = new GetRequest(indexName, id);
         //获取文档信息
         GetResponse getResponse = restHighLevelClient.get(
                 getRequest, RequestOptions.DEFAULT
         );
-        System.out.println(JSON.parseObject(getResponse.getSourceAsString()));
+        System.out.println("es获取文档记录成功................" + JSON.parseObject(getResponse.getSourceAsString()));
     }
 
     /**
      * 删除文档
      */
-    public void deleteDocument(String indexName, String type, String id) throws Exception {
-        DeleteRequest deleteRequest = new DeleteRequest(indexName, type, id);
+    public void deleteDocument(String indexName, String id) throws Exception {
+        if (!isExistIndex(indexName) || StringUtils.isEmpty(indexName)) {
+            throw new RuntimeException("不存在此索引......请检查索引" + indexName);
+        }
+        if (StringUtils.isEmpty(id)) {
+            throw new RuntimeException("请传入文档id" + id);
+        }
+        DeleteRequest deleteRequest = new DeleteRequest(indexName, id);
         DeleteResponse deleteResponse = restHighLevelClient.delete(deleteRequest
                 , RequestOptions.DEFAULT);
+        System.out.println("es删除文档成功.........." + indexName + "....." + id);
     }
 
     /**
-     * 删除文档
+     * 更新文档，部分字段
      */
-    public void upDateDocument(String indexName, String type, String id, Object object) throws Exception {
-        UpdateRequest updateRequest = new UpdateRequest(indexName, type, id);
+    public void upDateDocument(String indexName, String id, Object object) throws Exception {
+        if (!isExistIndex(indexName) || StringUtils.isEmpty(indexName)) {
+            throw new RuntimeException("不存在此索引......请检查索引" + indexName);
+        }
+        if (StringUtils.isEmpty(id)) {
+            throw new RuntimeException("请传入文档id" + id);
+        }
+        UpdateRequest updateRequest = new UpdateRequest(indexName, id);
         //设置文档更新内容
         updateRequest.doc(JSON.toJSONBytes(object), XContentType.JSON);
         //执行更新文档
         UpdateResponse updateResponse =
                 restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);
+        System.out.println("es更新部分字段成功........");
 
     }
 }
