@@ -8,7 +8,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
+
     String name;
+
+    String place;
+
+    String email;
+
+    String info;
+
     int age;
-    String num;
+
 }

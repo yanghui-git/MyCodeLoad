@@ -12,12 +12,13 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.indices.CreateIndexRequest;
-import org.elasticsearch.client.indices.CreateIndexResponse;
-import org.elasticsearch.client.indices.GetIndexRequest;
+import org.elasticsearch.client.indices.*;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
+import java.util.Map;
 
 /**
  * https://blog.csdn.net/JacksonKing/article/details/104513527?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control
@@ -29,15 +30,41 @@ public class ESUtil {
     @Autowired
     private RestHighLevelClient restHighLevelClient;
 
+
     /**
      * 创建索引
      */
     public void createIndex(String indexName) throws Exception {
+        this.createIndex(indexName, "");
+    }
+
+    /**
+     * 创建索引
+     * 指定了创建索引的DSL语句
+     */
+    public void createIndex(String indexName, String dsl) throws Exception {
         CreateIndexRequest createIndexRequest = new CreateIndexRequest(indexName);
+        if (!StringUtils.isEmpty(dsl)) {
+            createIndexRequest.source(dsl, XContentType.JSON);
+        }
         CreateIndexResponse createIndexResponse = restHighLevelClient.indices().create(
                 createIndexRequest, RequestOptions.DEFAULT
         );
+        System.out.println("索引创建成功...." + createIndexRequest);
     }
+
+
+    /**
+     * 查看索引结构
+     */
+    public Map getIndices(String indexName) throws Exception {
+        if (!isExistIndex(indexName)) {
+            throw new RuntimeException("不存在此索引......." + indexName);
+        }
+        GetIndexRequest getIndexRequest = new GetIndexRequest(indexName);
+        return restHighLevelClient.indices().get(getIndexRequest, RequestOptions.DEFAULT).getMappings().get(indexName).getSourceAsMap();
+    }
+
 
     /**
      * 判断是否存在索引
@@ -52,13 +79,15 @@ public class ESUtil {
      * 删除索引
      */
     public void deleteIndex(String indexName) throws Exception {
+        //必须加此判断，不存在此索引的话，会抛出异常
+        // [estest] ElasticsearchStatusException[Elasticsearch exception [type=index_not_found_exception, reason=no such index [estest]]
         if (!this.isExistIndex(indexName)) {
+            System.out.println("删除索引成功..............,不存在此索引");
             return;
         }
-        restHighLevelClient.indices().delete(new
-                        DeleteIndexRequest(indexName),
-                RequestOptions.DEFAULT
-        );
+        DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest(indexName);
+        restHighLevelClient.indices().delete(deleteIndexRequest, RequestOptions.DEFAULT);
+        System.out.println("删除索引成功.............." + deleteIndexRequest);
     }
 
     /**
@@ -73,6 +102,7 @@ public class ESUtil {
         indexRequest.source(json, XContentType.JSON);
         //增加执行对象
         IndexResponse indexResponse = restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
+        System.out.println("es 增加文档成功........" + indexResponse);
     }
 
     /**

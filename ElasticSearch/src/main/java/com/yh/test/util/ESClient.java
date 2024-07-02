@@ -12,7 +12,7 @@ public class ESClient {
     @Bean
     public RestHighLevelClient restHighLevelClient() {
         HttpHost[] httpHosts = new HttpHost[]{new HttpHost(
-                "localhost", 9200
+                "47.100.102.136", 9200
         )};
         RestHighLevelClient restHighLevelClient = new RestHighLevelClient(
                 RestClient.builder(httpHosts)
