@@ -1,7 +1,9 @@
 package com.yh.test.util;
 
 import com.alibaba.fastjson.JSON;
+import com.yh.test.util.dao.Student;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
@@ -16,8 +18,10 @@ import org.elasticsearch.client.indices.*;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -115,6 +119,23 @@ public class ESUtil {
         System.out.println("es 增加文档成功........" + indexResponse);
     }
 
+    /**
+     * 批量增加文档
+     */
+    public void bulkAddDocument(String indexName, List<Student> studentList) throws Exception {
+        if (!isExistIndex(indexName) || StringUtils.isEmpty(indexName)) {
+            throw new RuntimeException("不存在此索引......请检查索引" + indexName);
+        }
+        if (CollectionUtils.isEmpty(studentList)) {
+            return;
+        }
+        BulkRequest request = new BulkRequest();
+        for (Student student : studentList) {
+            request.add(new IndexRequest(indexName).id(student.getId()).source(JSON.toJSONString(student), XContentType.JSON));
+        }
+        restHighLevelClient.bulk(request, RequestOptions.DEFAULT);
+        System.out.println("es 批量增加文档成功........" + JSON.toJSONString(studentList));
+    }
 
     /**
      * 获取文档

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -66,6 +68,34 @@ public class EsTest {
             student.setPlace("上海哦" + i);
             esUtil.addDocument("estest", student, String.valueOf(System.currentTimeMillis()));
         }
+    }
+
+
+    /**
+     * 批量 插入文档/行数据
+     */
+    @Test
+    public void addBatch() throws Exception {
+        List<Student> studentList = new ArrayList<Student>();
+        for (int i = 0; i <= 12; i++) {
+            Student student = new Student();
+            student.setAge(i);
+            student.setEmail(i + "@163.com");
+            student.setInfo("测试bulk批量新增");
+            student.setPlace("上海哦" + i);
+            student.setId(String.valueOf(System.currentTimeMillis() + (int) (Math.random() * 10000)));
+            studentList.add(student);
+        }
+        //批量新增
+        esUtil.bulkAddDocument("estest", studentList);
+        //依次检查新增结果
+        studentList.stream().forEach(stu -> {
+            try {
+                esUtil.getDocument("estest", stu.getId());
+            } catch (Exception e) {
+                throw new RuntimeException("获取es bulk插入数据失败" + e);
+            }
+        });
     }
 
     /**
