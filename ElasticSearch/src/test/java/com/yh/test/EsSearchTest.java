@@ -1,5 +1,6 @@
 package com.yh.test;
 
+import com.alibaba.fastjson.JSON;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -8,6 +9,10 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.Aggregations;
+import org.elasticsearch.search.aggregations.BucketOrder;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.junit.Test;
@@ -15,6 +20,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -255,6 +262,100 @@ public class EsSearchTest {
 
         //解析响应结果
         printResult(response);
+    }
+
+    /**
+     * #聚合 按email聚合 bucket聚合
+     * GET /estest/_search
+     * {
+     * "size": 0,
+     * "aggs": {
+     * "emailAgg": {
+     * "terms": {
+     * "field": "email",
+     * "order": {
+     * "_count": "asc"
+     * },
+     * "size": 10
+     * }
+     * }
+     * }
+     * }
+     * <p>
+     * <p>
+     * #聚合 按email聚合，然后求age最大值,然后按照平均值降序
+     * GET /estest/_search
+     * {
+     * "size": 0,
+     * "aggs": {
+     * "emailAgg": {
+     * "terms": {
+     * "field": "email",
+     * "size": 5,
+     * "order": {
+     * "ageAgg.avg": "desc"
+     * }
+     * },
+     * "aggs": {
+     * "ageAgg": {
+     * "stats": {
+     * "field": "age"
+     * }
+     * }
+     * }
+     * }
+     * }
+     * }
+     */
+    @Test
+    public void aggrs() throws Exception {
+        //准备Request
+        SearchRequest searchRequest = new SearchRequest("estest");
+        //组织DSL参数
+        //设置文档数据size
+        searchRequest.source().size(0);
+        //设置聚合
+        searchRequest.source().aggregation(AggregationBuilders
+                //此次聚合名称
+                .terms("emailAgg")
+                //指定聚合字段
+                .field("email")
+                //聚合结果大小
+                .size(5)
+                //结果排序
+                //默认情况下，Bucket聚合会统计Bucket内的文档数量，记为_count，并且按照_count降序排序
+                //.order(BucketOrder.count(false))
+
+                //按照平均值降序
+                .order(BucketOrder.aggregation("ageAgg.avg", false))
+
+                //子聚合 按email聚合，然后求age最大值,然后按照平均值降序
+                .subAggregation(AggregationBuilders
+                        // 子聚合名称ageAgg
+                        .stats("ageAgg")
+                        //指定年龄字段
+                        .field("age"))
+
+        );
+
+        //发送请求，得到响应结果
+        SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+        //解析聚合结果
+        Aggregations aggregations = response.getAggregations();
+        //根据名称获取聚合结果
+        Terms emailTerm = aggregations.get("emailAgg");
+        //获取桶
+        List<? extends Terms.Bucket> buckets = emailTerm.getBuckets();
+        //查询的结果数组
+        for (Terms.Bucket bucket : buckets) {
+            //
+            System.out.println("es 聚合解析结果获取成功.....key: " +
+                    bucket.getKeyAsString() + "....数量: " +
+                    bucket.getDocCount() + "....对应子聚合结果:" + JSON.toJSONString(bucket.getAggregations().get("ageAgg")));
+        }
+
+        //打印结果
+        // printResult(response);
     }
 
     /**
