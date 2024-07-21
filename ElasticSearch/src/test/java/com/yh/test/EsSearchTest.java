@@ -15,6 +15,9 @@ import org.elasticsearch.search.aggregations.BucketOrder;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+import org.elasticsearch.search.suggest.Suggest;
+import org.elasticsearch.search.suggest.SuggestBuilder;
+import org.elasticsearch.search.suggest.SuggestBuilders;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -357,6 +360,51 @@ public class EsSearchTest {
         //打印结果
         // printResult(response);
     }
+
+
+    /**
+     * 自动补全
+     * #自动补全查询
+     * GET /testzidong/_search
+     * {
+     * "suggest": {
+     * "mysuggest": {
+     * "text": "h",
+     * "completion": {
+     * "field": "title",
+     * "size": 10
+     * }
+     * }
+     * }
+     * }
+     *
+     * @throws Exception
+     */
+    @Test
+    public void suggest() throws Exception {
+        //准备Request
+        SearchRequest searchRequest = new SearchRequest("testzidong");
+        //请求参数
+        searchRequest.source().suggest(
+                new SuggestBuilder()
+                        //自定义名称
+                        .addSuggestion("mysuggest",
+                                //补全字段
+                                SuggestBuilders.completionSuggestion("title")
+                                        //搜索字
+                                        .prefix("h")
+                                        .size(5))
+        );
+        //发送请求，得到响应结果
+        SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+
+        //打印自动补全
+        for (Suggest.Suggestion.Entry.Option option : response.getSuggest().getSuggestion("mysuggest").getEntries().get(0).getOptions()) {
+            System.out.println("es 自动补全结果....." + option.getText());
+        }
+
+    }
+
 
     /**
      * 解析响应结果
